@@ -2,6 +2,50 @@
 
 This is the start of the docs. The famous first words.
 
+# Designs
+
+## Simple structure that works
+Your landing page files should have a simple structure: an ``index.html`` file in its root directory.
+
+- When you visit ``my-awesome-app.closeheatapp.com``, we will show you ``index.html``.
+- If you visit ``my-awesome-app.closeheatapp.com/team.html``, we will show ``team.html``.
+- If you visit ``my-awesome-app.closeheatapp.com/team``, we will show you ``team/index.html``.
+
+You can use any structure you want, but the usual one is:
+
+```
+- index.html
+- /team -
+      - index.html
+- /img -
+     - logo.png
+- /css -
+     - hero.css
+```
+
+## How are files stored at closeheat?
+
+closeheat serves all landing page files from GitHub. To import your custom design to closeheat means uploading your files to GitHub and adding that GitHub project to closeheat.
+
+## Import custom design
+
+You can import your own beautiful HTML / CSS landing page designs into closeheat. closeheat lets you to do it in a couple of ways. Using GitHub Client is the simplest way for somebody who does not use ``git``.
+
+### Publishing your landing page files to GitHub
+
+Follow [GitHub guide](https://guides.github.com/introduction/getting-your-project-on-github) and publish your landing page files to GitHub.
+
+### Connect files in GitHub to closeheat
+
+When you have your project files in GitHub - click [New application](http://app.closeheat.com/apps) in closeheat and select "Existing website from GitHub".
+
+Then select the GitHub repository you just created, choose a subdomain and click "Create application". Wait for the publishing to finish and check out your new landing page!
+
+### Edit landing page locally
+When you change files in you GitHub project, it also changes in your closeheat landing page. In fancy terms, it is called ``continuous deployment``.
+
+You can edit your files on GitHub the way you like - whether its using Sublime Text or Notepad.
+
 
 # Integrations
 ## Segment
@@ -40,7 +84,7 @@ Make sure you are logged in closeheat and open your landing page (f.e. "http://m
 
 Look in the lower right corner for closeheat logo and click it. Doing that will open an in-browser editor.
 
-Look for ``</head>`` closing tag and put your segment code right above it. For example:
+Look for ``</head>`` closing tag and put your Segment code right above it. For example:
 
 ```html
 <head>
@@ -146,3 +190,97 @@ When you click ``Preview`` in in-browser editor, you will see the form appear in
 You can further customise the embedded form via ``css`` or in ``HTML`` by adding styles.
 
 Once you are happy with result, click "Publish" and it will appear for all the visitors of you landing page.
+
+## Google Analytics
+
+*NOTE: You can use Google Analytics via our Segment integration by flipping a switch. Check [here](https://segment.com/docs/integrations/google-analytics) for more.*
+
+Google Analytics is the most popular analytics tool for the web because it's free and supports a wide range of features. It's especially good at measuring traffic sources and ad campaigns.
+
+### Get Google Analytics Tracking Code
+
+Log in to your Google Analytics dashboard, follow "Admin" tab. Create a new property by entering your app name and url (f.e. "my-awesome-app" and "my-awesome-app.closeheatapp.com").
+
+That will lead you to a page with your Tracking ID and Tracking code. Copy the tracking code that should look like this:
+
+```html
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-43857026-11', 'auto');
+  ga('send', 'pageview');
+
+</script>
+```
+
+### Add tracking code to your closeheat landing page via in-browser editor
+
+Make sure you are logged in closeheat and open your landing page (f.e. "http://my-awesome-app.closeheatapp.com").
+
+Look in the lower right corner for closeheat logo and click it. Doing that will open an in-browser editor.
+
+Look for ``</head>`` closing tag and put your tracking code right above it. For example:
+
+```html
+<head>
+<title>My Awesome Website</title>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-43857026-11', 'auto');
+  ga('send', 'pageview');
+
+</script>
+</head>
+```
+
+Once the code is in place - click "Publish". After the publishing is done, Google Analytics will start sending statistics to your dashboard.
+
+## Optimizely (A/B tests)
+
+*NOTE: You can use Optimizely via our Segment integration by flipping a switch. Check [here](https://segment.com/docs/integrations/optimizely) for more.*
+
+Optimizely is a dead-simple A/B testing tool that lets your marketing team test changes on your website in a WYSIWYG editor without having to write any code. Segment will pass events and traits to Optimizely, and send experiment variations to other tools.
+
+### Get Optimizely script code
+
+Create a new project on Optimizely and head over to "Settings" tab. Copy the code snippet that looks like this:
+
+```html
+<script src="//cdn.optimizely.com/js/2961540054.js"></script>
+```
+
+### Add Optimizely code to your closeheat landing page via in-browser editor
+
+Make sure you are logged in closeheat and open your landing page (f.e. "http://my-awesome-app.closeheatapp.com").
+
+Look in the lower right corner for closeheat logo and click it. Doing that will open an in-browser editor.
+
+Look for ``<head>`` **opening** tag and put your tracking code right below it. For example:
+
+```html
+<head>
+<script src="//cdn.optimizely.com/js/2961540054.js"></script>
+<title>My Awesome Website</title>
+</head>
+```
+
+Once the code is in place - click "Publish". After the publishing is done, Optimizely will be connected to your landing page.
+
+### Set up an experiment
+
+Head to "Overview" tab and click "New Experiment" and enter your landing page url (f.e. "http://my-awesome-app.closeheatapp.com").
+
+Wait for the loading to happen and you should see your landing page successfully loaded.
+
+Click on elements, edit them to create a new A/B experiment page. Once you're done - click "Save now" and "Start Experiment".
+
+Wait for a few seconds for Optimizely to push their changes and visit your landing page (go to "http://my-awesome-app.closeheatapp.com").
+
+You will see your experiment running.
