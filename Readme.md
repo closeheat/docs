@@ -35,11 +35,13 @@ You can import your own beautiful HTML / CSS landing page designs into closeheat
 
 Follow [GitHub guide](https://guides.github.com/introduction/getting-your-project-on-github) and publish your landing page files to GitHub.
 
+### Files structure
+Make sure you have your ``index.html`` (or ``.jade) in the root folder of your GitHub repository. All the ``require`` declarations in your javascript files will be downloaded upon build - so you don't need a ``package.json`` if you don't want. 
+We're working on a custom build solution, so you can use whatever you want.
+
 ### Connect files in GitHub to closeheat
 
-When you have your project files in GitHub - click [New application](http://app.closeheat.com/apps) in closeheat and select "Existing website from GitHub".
-
-Then select the GitHub repository you just created, choose a subdomain and click "Create application". Wait for the publishing to finish and check out your new landing page!
+When you have your project files in GitHub - click [here](http://app.closeheat.com/apps/upload/github) and select you repository. Wait for the publishing to finish and check out your new landing page!
 
 ### Edit landing page locally
 When you change files in you GitHub project, it also changes in your closeheat landing page. In fancy terms, it is called ``continuous deployment``.
